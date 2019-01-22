@@ -1,0 +1,25 @@
+ /* This is the styesheet for all other pages pages.*/
+ 
+ body {
+    background-color: rgb(117, 97, 70);
+}
+
+h1 {
+   color: #36C;
+}
+
+h2 {color: darkslategray }
+
+.nextTasks {
+   color: cadetblue; font-size: 35pt; font-family: Georgia, 'Times New Roman', Times, serif; margin-bottom: 25pt; 
+}
+
+a {
+    color: darkcyan; font-size: 20pt; font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+.flash          { background: #cee5F5; padding: 18pt;
+    border: 1px solid #aacbe2; }
+
+.error          { background: #f0d6d6; padding: 12pt; }

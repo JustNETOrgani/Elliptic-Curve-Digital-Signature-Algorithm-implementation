@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+   <head>
+        <link rel=stylesheet type=text/css href="{{ url_for('static', filename='supportingStyles.css') }}"></link>
+        <title>ECDSA Signing Success</title>
+   </head>
+   <body>
+      {% with messages = get_flashed_messages() %}
+         {% if messages %}
+            <ul>
+               {% for message in messages %}
+               <li<{{ message }}</li>
+               {% endfor %}
+            </ul>
+         {% endif %}
+      {% endwith %}
+		
+    <h1>Congratulations. File Digitally Signed. Xie, xie.</h1>
+    <h2>Tasks available to you:</h2>
+    <p>Upload new file: <a href = "{{ url_for('index') }}">File upload Page</a></p>
+    
+    <p>Verify Signed File: <a href = "{{ url_for('verifyFile') }}"> File Verification</a></p>
+
+   </body>
+</html>
