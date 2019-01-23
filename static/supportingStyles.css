@@ -1,14 +1,23 @@
  /* This is the styesheet for all other pages pages.*/
  
  body {
-    background-color: rgb(158, 151, 86);
+    background-color: rgb(206, 203, 179);
 }
 
 h1 {
    color: rgb(80, 116, 189);
 }
 
-h2 {color: darkslategray }
+h2 {color: rgb(17, 32, 32) }
+
+#optionsWrapper{
+    margin-top: 30%; background-color: gray; width: 70%; height: 45px;
+}
+
+#optionsInHolder {
+    width: 90%; height: 35px; background-color: darkolivegreen; margin-top: 2px;
+}
+
 
 .nextTasks {
    color: cadetblue; font-size: 35pt; font-family: Georgia, 'Times New Roman', Times, serif; margin-bottom: 25pt; 
@@ -24,10 +33,11 @@ a {
 
 .error          { background: #f0d6d6; padding: 13pt; }
 
-.footer {
-    margin-top:200pt; background-color: rgb(187, 216, 218); height: 30pt;
-}
-
-.footer_text {
-    text-align: center; color: darkslateblue; font-size: 13pt; font-family: cursive; margin-top: 5pt;
-}
+#footer {
+    float: left; margin-top:2pt; width: 100%; height: 24px;
+  }
+  
+  .footer_text {
+      text-align: center; color: rgb(103, 95, 158); font-size: 13pt; font-family: cursive; 
+      margin-top: 2pt; margin-bottom: 2px;
+  }

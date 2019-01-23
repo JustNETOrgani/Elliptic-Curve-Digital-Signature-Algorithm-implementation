@@ -16,13 +16,18 @@
       {% endwith %}
 		
     <h1>File successfully uploaded to online system.</h1>
-    <h2>Your available options:</h2>
-    <p class="nextTasks">Upload new file: <a href = "{{ url_for('index') }}"> File upload Page</a></p>
-    
-    <p class="nextTasks">Continue to File Signing: <a href = "{{ url_for('SignUserFile') }}"> File Signing Page</a></p>
     <hr />
-    <div class="footer">
-       <p class="footer_text">&copy JustNET</p>
-    </div>
+    <center><div id="optionsWrapper">
+         
+         <center><div id="optionsInHolder">
+               <h2>Your available options:</h2>
+               <p class="nextTasks">Upload new file: <a href = "{{ url_for('index') }}"> File upload Page</a></p>
+               
+               <p class="nextTasks">Continue to File Signing: <a href = "{{ url_for('SignUserFile') }}"> File Signing Page</a></p>
+         </div></center>
+
+    </div></center>
+    
+    <hr />
    </body>
 </html>

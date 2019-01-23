@@ -8,31 +8,94 @@ h1 {
    color: #36C;
 }
 
+#wrapper {
+    margin-top: 0%; margin-bottom: 0%; width: 100%; 
+}
+
+#topImgDiv {
+    width: 100%; height: 15%; background-color: #cee5F5
+}
+
+#msgsDiv {
+    width: 100%; height: 11%; background-color: rgb(181, 203, 219) 
+}
+
+#niHaoMsg {
+     float: left; width: 20%; height: 9%; margin-top: 5px;
+}
+
+#welcomeMsg {
+    float: left; width: 50%; height: 9%;
+}
+
+#Chngreetings{
+    color: rgb(226, 33, 71); font-size: 25pt; font-family: 'Courier New', Courier, monospace;
+}
+
+#AppName{
+    color: rgb(57, 145, 57);  font-size: 25pt; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+#social_icons
+{
+	width:30%;
+	height:11%;
+	float:left;
+}
+
+img.sm_icon
+{
+	border:1px solid blue;
+	width:60px;	
+	padding:2px;
+	height:30px;
+	border-radius:50%;
+	opacity:0.8;
+	margin-right:5px;
+	float:right;
+}
+img.sm_icon:hover
+{
+
+opacity:1.0;
+}
+
 #mainContent {
-    margin-top: 15pt; margin-bottom: 20pt; 
+    background-color: darksalmon; width: 100%; height: 40%; float: left;
 }
 
-#Chngreetings {
-    color: rgb(226, 33, 71); text-align: left; font-size: 50pt; font-family: 'Courier New', Courier, monospace
-}
-
-#AppName {
-    color: rgb(108, 238, 108); text-align: center; font-size: 45pt; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+#formContainer {
+    background-color: rgb(126, 156, 212); width: 60%; height: 45%; padding-top: 0px; margin-top: 80px;
 }
 
 .Instruction {
-    color: coral; text-align: center; font-family: cursive; font-size: 22pt
+    color: rgb(161, 97, 74); text-align: center; font-family: cursive; font-size: 22pt
 }
+
+#bottomImgsDiv{
+    height: 131px; width: 100%; 
+}
+
+#bottomImgLeft {
+    float: left; height: 131px; width: 50%;
+}
+
+#bottomImgRight{
+    float: right; height: 131px; width: 50%;
+}
+
+img.bottomImgs:hover{ opacity: 1.0;}
 
 .flash          { background: #cee5F5; padding: 18pt;
     border: 1px solid #aacbe2; }
 
-.error          { background: #f0d6d6; padding: 12pt; }
+.error          { background: #f0d6d6; padding: 12pt; color: crimson}
 
-.footer {
-    margin-top:200pt; background-color: rgb(187, 216, 218); height: 30pt;
+#footer {
+  float: left; margin-top:2pt; width: 100%; height: 24px;
 }
 
 .footer_text {
-    text-align: center; color: darkslateblue; font-size: 13pt; font-family: cursive; margin-top: 5pt;
+    text-align: center; color: rgb(103, 95, 158); font-size: 13pt; font-family: cursive; 
+    margin-top: 2pt; margin-bottom: 2px;
 }
