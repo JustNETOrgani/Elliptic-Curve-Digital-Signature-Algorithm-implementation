@@ -1,11 +1,11 @@
  /* This is the styesheet for all other pages pages.*/
  
  body {
-    background-color: rgb(117, 97, 70);
+    background-color: rgb(158, 151, 86);
 }
 
 h1 {
-   color: #36C;
+   color: rgb(80, 116, 189);
 }
 
 h2 {color: darkslategray }
@@ -22,4 +22,12 @@ a {
 .flash          { background: #cee5F5; padding: 18pt;
     border: 1px solid #aacbe2; }
 
-.error          { background: #f0d6d6; padding: 12pt; }
+.error          { background: #f0d6d6; padding: 13pt; }
+
+.footer {
+    margin-top:200pt; background-color: rgb(187, 216, 218); height: 30pt;
+}
+
+.footer_text {
+    text-align: center; color: darkslateblue; font-size: 13pt; font-family: cursive; margin-top: 5pt;
+}
