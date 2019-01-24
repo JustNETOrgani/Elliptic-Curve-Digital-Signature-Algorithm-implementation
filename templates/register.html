@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -6,12 +6,14 @@
     <title>LoginPage</title>
 </head>
 <body>
-    <form action="http://localhost:5000/loginAccess" method="post">
+    <form action="http://localhost:5000/registerHandler" method="post">
     <label for="username">Username</label>
     <input name="username" id="username" required>
     <label for="password">Password</label>
     <input type="password" name="password" id="password" required>
-    <input type="submit" value="Log In">
+    <input type="submit" value="Register">
     </form>
+    <hr />
+    <div><a href="/sendToLogin">Click here to log in if already registered.</a></div>
 </body>
 </html>

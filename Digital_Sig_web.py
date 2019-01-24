@@ -5,6 +5,9 @@ import ecdsa
 import os
 import sys
 from ecdsa import SigningKey, VerifyingKey
+import sqlite3
+import appDb
+
 
 #  Imports for the ECDSA ends here.
 
@@ -12,7 +15,7 @@ from ecdsa import SigningKey, VerifyingKey
 import os
 from flask import Flask, render_template, request, redirect, flash, url_for
 from werkzeug.utils import secure_filename
-
+import appDb
 #  Flask imports ends. 
 
 uploads = 'C:/users/signit/source/repos/Digital_Sig_web/uploads'  # The path to the directory to hold files uploaded.
@@ -20,17 +23,28 @@ ALLOWED_EXTENSIONS = set(['txt'])         #  File extensions to be accepted by t
 
 app = Flask(__name__)
 
+
 app.config['UPLOAD_FOLDER'] = uploads
-app.secret_key = 'random string'    #  Verification technique.
+app.secret_key = os.urandom(24)   #  To keep session secured.
 
 
 def permited_fileExt(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+
 @app.route('/')
 def index():
-   return render_template('landingPage.html')
+   return render_template('register.html')
+
+
+#@app.route('/')
+#def index():
+#   return render_template('landingPage.html')
+
+@app.route('/sendToLogin')
+def sendUserToLoginPage():
+   return render_template('loginPage.html')
 
 
 @app.route('/uploader', methods = ['GET', 'POST'])
@@ -185,6 +199,76 @@ def verifySuccess():
 #  Improvements to be done.
 #  At the verification page, user should enter public key acquired from sender, DS and Hash of File.
 #  Consider use of Database for storage and retrieval of needed data.  
+
+# DB issues for testing purposes.
+DBNAME = 'DigiSign.db'
+conn = sqlite3.connect(DBNAME)
+conn = sqlite3.connect(DBNAME, check_same_thread=False)
+
+
+#   A method to handle user registration.
+
+@app.route('/registerHandler', methods = ['GET', 'POST']) 
+def register():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        db = conn
+        error = None
+
+        if not username:
+            error = 'Username is required.'
+        elif not password:
+            error = 'Password is required.'
+        elif db.execute(
+            'SELECT id FROM users WHERE username = ?', (username,)
+        ).fetchone() is not None:
+            error = 'User {} is already registered.'.format(username)
+
+        if error is None:
+            db.execute(
+                'INSERT INTO users (username, password) VALUES (?, ?)',
+                (username, password)
+            )
+            db.commit()
+            return redirect(url_for('login'))
+
+        flash(error)
+
+    return render_template('register.html')
+
+
+
+#   Method to handle user login.
+@app.route('/loginAccess', methods = ['GET', 'POST'])      
+def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        #hpassword = sha256(password.encode())
+        db = conn
+        error = None
+        user = db.execute(
+            'SELECT * FROM users WHERE username = ?', (username,)
+        ).fetchone()
+
+        if user is None:
+            error = 'Incorrect username.'
+        elif ((user[2]) != password):
+            error = 'Incorrect password.'
+
+        flash(error)
+
+    return render_template('landingPage.html')
+
+
+#   Method to handle logout.
+@app.route('/logout')        #   Rewrite this code.
+def logout():
+    return redirect(url_for('login'))
+
+#conn.close()
+
 
 
 if __name__ == '__main__':
