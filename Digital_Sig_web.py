@@ -96,19 +96,18 @@ pbk = ''
 def SignUserFile():
     #   User's file or Data acceptance begins.
    with open('C:/users/signit/source/repos/Digital_Sig_web/uploads/justTesting.txt', 'r') as Ufile:   
-   #  This line of code just above needs to be dyname. Possibly pass the filename as variable from "POST"             
+   #  This line of code just above needs to be dynamic. Possibly pass the filename as variable from "POST" or DB.             
    #  'r' opens the file in read mode.
-   #  Reading couldn't be done on .docx, .xlsx, .pdf files. So far, only .txt is successful.
+   #  Reading couldn't be done on .docx, .xlsx, .pdf files. So far, only .txt is successful. 
       global hmsg, ds, pvk, pbk
       dataFile = Ufile.read()
       hashedFile = (sha256(dataFile.encode())).hexdigest()    #   Encode and Hash the file.
       hmsg = hashedFile
-      #return hashedFile
+     
 
 
 #def keyPairGenerator():
     #   Very easy way to derive private and public keys from ecdsa beigns.
-    #   Another way to generate the private and public keys. Private key gotten but Public. 
 
    private_key = SigningKey.generate(curve=ecdsa.SECP256k1)
    string_private_key = private_key.to_string()
@@ -120,10 +119,9 @@ def SignUserFile():
    pbk = string_public_key
     #print('')
     #print("The Private key is: ", string_private_key)
-   print('')
-   print("The Public key is: ", string_public_key)
+   
 
-   #return string_private_key, string_public_key
+   
 
 
     #   Generation of Private and Public keys ends. 
@@ -132,17 +130,13 @@ def SignUserFile():
     #   Signing of the Message/Data using Private key and Hashed Message begins. 
 
    sgkey = ecdsa.SigningKey.from_string(string_private_key, curve=ecdsa.SECP256k1)
-   print('')
-   print("The Signing Key is: ", sgkey)
+   
 
    digitalSig = sgkey.sign(hashedFile.encode()) # This throws error if not encoded.
    ds = digitalSig
-   print('')
-   print("The Digital Signature is: ", digitalSig)
-
-   #return ('Signing successfully completed.')   # This works but I want to implement the verification phase.
+   
    return redirect(url_for('SigningSuccess'))   #  A redirect added. 
-   #return digitalSig
+  
     #   Signing of the Message/Data using Private key and Hashed Message ends here.
 
 #  Creating getters.
@@ -180,16 +174,11 @@ def verifyFile():
     # To convert verificationkey to string to see correctly. Next line of code can be activated and printed if needed.
 
    string_verificationkey = verificationKey.to_string()
-   print('')
-   print("The Verification Key is: ", verificationKey) 
-   print('')
-   print("The String Verification Key is: ", string_verificationkey)
+   
 
    assert  verificationKey.verify(getDS(), gethmsg().encode()), "Sorry! Verification failed."
    #  The code just above needs to be edited to make room for failed verification.
-   print('')
-   print("Congratulations! Verification was successful. Thank you.")
-
+  
    return redirect(url_for('verifySuccess'))   #  A redirect added.
    #   Verification phase ends here.
 
