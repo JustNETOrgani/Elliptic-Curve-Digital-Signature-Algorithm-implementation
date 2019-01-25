@@ -1,4 +1,4 @@
-# Simple implementation of Digital Signature using user's file as Message or Data.
+# An implementation of Digital Signature using user's file as Message or Data.
 
 from hashlib import sha256
 import ecdsa
