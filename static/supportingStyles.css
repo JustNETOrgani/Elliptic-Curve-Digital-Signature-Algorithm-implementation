@@ -33,6 +33,28 @@ a {
 
 .error          { background: #f0d6d6; padding: 13pt; }
 
+/*
+Below would be used to control the registration and login pages.
+*/
+
+#topArea{width: 100%; height: 9%; background-color: #cee5F5;}
+
+#AppName{
+    color: rgb(57, 145, 57);  font-size: 25pt; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+#leftSide{width: 30%; height: 400px; background-color: rgb(158, 95, 160); float: left;}
+
+#rightSide{width: 70%; height: 405px; background-color: cornflowerblue; float: right;}
+
+#inputArea{width: 55%; height: 150px; background-color: darkcyan; margin-top: 3%;}
+
+#sendToLoginLink{color: darkmagenta; text-align: center; font-family: cursive; font-size: 16px;}
+
+#sendToRegisterLink{color: darkmagenta; text-align: center; font-family: cursive; font-size: 16px;}
+
+
+
 #footer {
     float: left; margin-top:2pt; width: 100%; height: 24px;
   }

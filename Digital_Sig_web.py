@@ -46,6 +46,10 @@ def index():
 def sendUserToLoginPage():
    return render_template('loginPage.html')
 
+@app.route('/sendToRegister')
+def sendUserToRegistPage():
+   return render_template('register.html')
+
 
 @app.route('/uploader', methods = ['GET', 'POST'])
 def upload_file():
@@ -91,7 +95,7 @@ pbk = ''
    #  Consultations time oooo. Tying something.
 def SignUserFile():
     #   User's file or Data acceptance begins.
-   with open('C:/users/signit/source/repos/Digital_Sig_web/uploads/runmatlib.txt', 'r') as Ufile:   
+   with open('C:/users/signit/source/repos/Digital_Sig_web/uploads/justTesting.txt', 'r') as Ufile:   
    #  This line of code just above needs to be dyname. Possibly pass the filename as variable from "POST"             
    #  'r' opens the file in read mode.
    #  Reading couldn't be done on .docx, .xlsx, .pdf files. So far, only .txt is successful.
@@ -231,7 +235,7 @@ def register():
                 (username, password)
             )
             db.commit()
-            return redirect(url_for('login'))
+            return redirect(url_for('sendUserToLoginPage'))
 
         flash(error)
 
@@ -242,30 +246,30 @@ def register():
 #   Method to handle user login.
 @app.route('/loginAccess', methods = ['GET', 'POST'])      
 def login():
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
+      if request.method == 'POST':
+         username = request.form['username']
+         password = request.form['password']
         #hpassword = sha256(password.encode())
-        db = conn
-        error = None
-        user = db.execute(
+         db = conn
+         error = None
+         user = db.execute(
             'SELECT * FROM users WHERE username = ?', (username,)
-        ).fetchone()
+         ).fetchone()
 
-        if user is None:
+         if user is None:
             error = 'Incorrect username.'
-        elif ((user[2]) != password):
+         elif ((user[2]) != password):
             error = 'Incorrect password.'
 
-        flash(error)
+         flash(error)
 
-    return render_template('landingPage.html')
+      return render_template('landingPage.html')
 
 
 #   Method to handle logout.
 @app.route('/logout')        #   Rewrite this code.
 def logout():
-    return redirect(url_for('login'))
+    return redirect(url_for('sendUserToLoginPage'))
 
 #conn.close()
 
