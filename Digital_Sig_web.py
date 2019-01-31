@@ -1,6 +1,6 @@
 # An implementation of Digital Signature using user's file as Message or Data.
 
-from hashlib import sha256
+from hashlib import sha256, md5
 import ecdsa
 import os
 import sys
@@ -203,11 +203,12 @@ conn = sqlite3.connect(DBNAME, check_same_thread=False)
 
 @app.route('/registerHandler', methods = ['GET', 'POST']) 
 def register():
+    error = None
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
+        hpassword = (md5(password.encode())).hexdigest()    # Hash the password.
         db = conn
-        error = None
 
         if not username:
             error = 'Username is required.'
@@ -221,7 +222,7 @@ def register():
         if error is None:
             db.execute(
                 'INSERT INTO users (username, password) VALUES (?, ?)',
-                (username, password)
+                (username, hpassword)
             )
             db.commit()
             return redirect(url_for('sendUserToLoginPage'))
@@ -235,24 +236,23 @@ def register():
 #   Method to handle user login.
 @app.route('/loginAccess', methods = ['GET', 'POST'])      
 def login():
-      if request.method == 'POST':
-         username = request.form['username']
-         password = request.form['password']
-        #hpassword = sha256(password.encode())
-         db = conn
          error = None
-         user = db.execute(
+         if request.method == 'POST':
+            username = request.form['username']
+            password = request.form['password']
+            hpassword = (md5(password.encode())).hexdigest()    # Hash the password.
+            db = conn
+            user = db.execute(
             'SELECT * FROM users WHERE username = ?', (username,)
-         ).fetchone()
-
-         if user is None:
-            error = 'Incorrect username.'
-         elif ((user[2]) != password):
-            error = 'Incorrect password.'
-
-         flash(error)
-
-      return render_template('landingPage.html')
+             ).fetchone()
+            
+            if  user is None:
+                error = 'Incorrect username.'
+            elif user[2] != hpassword:
+                error = 'Incorrect password.'
+            elif user[2]== hpassword:
+               return render_template('landingPage.html')
+         return render_template('loginPage.html', error=error)
 
 
 #   Method to handle logout.

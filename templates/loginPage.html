@@ -34,6 +34,9 @@
             <hr />
             <div><center><a id="sendToRegisterLink" href="/sendToRegister">Click here to register.</a></center></div>
             <hr />
+                {% if error %}
+                <p class="error"><strong>Error:</strong> {{ error }}
+                {% endif %}
         </div>     
 </body>
 </html>

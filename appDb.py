@@ -13,7 +13,6 @@ conn = sqlite3.connect(DBNAME)
 
 print("Database creation successful.")
 
-
 #   Creating a table
 #def createTable():
 #    conn.execute('''CREATE TABLE users
